@@ -13,14 +13,14 @@ class Parser
 {
 private:
     std::string     _commandLine;
-    SymbolTable&    _table;
+    SymbolTable*    _table;
     std::ifstream   _infile;
     std::string     firstPathFname;
     std::ofstream   _firstPath;
     std::string     _secondPath;
 
 public :
-    Parser(std::string fname, SymbolTable &table);
+    Parser(std::string fname);
     ~Parser();
     bool        hasMoreLines();
     void        advanced();

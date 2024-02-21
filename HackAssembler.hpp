@@ -10,7 +10,7 @@ class HackAssembler
 private:
     std::string _filename;
     std::string _curCommandLine;
-    SymbolTable _symbolTable;
+    SymbolTable* _symbolTable;
 public:
     HackAssembler(std::string fname);
     ~HackAssembler();
