@@ -20,8 +20,8 @@ inline std::string& trim(std::string s, const char* t)
 Parser::Parser(std::string fname)
 {
     this->_infile.open(fname.c_str());
-    this->firstPathFname = fname + ".firstpath";
-    this->_firstPath.open(firstPathFname);
+    this->_firstPathFname = fname + ".firstpath";
+    this->_firstPath.open(_firstPathFname);
     this->_table = SymbolTable::getTable();
 }
 
@@ -39,7 +39,7 @@ int Parser::instructionType()
         return 2;
 }
 
-void Parser::firstPath()
+std::string Parser::firstPath()
 {
     std::string line;
     std::size_t pos = -1;
@@ -67,28 +67,31 @@ void Parser::firstPath()
     }
     _firstPath.close();
     _infile.close();
+    return _firstPathFname;
 }
 
-void    Parser::secondPath()
-{
-    std::string line;
-    std::size_t pos = -1;
-    int         memoryNum = 16;
+// void    Parser::secondPath()
+// {
+//     std::string line;
+//     std::size_t pos = -1;
+//     int         memoryNum = 16;
 
-    std::string a_instruction;
-    _infile.open(firstPathFname);
-    while (std::getline(_infile, line))
-    {
-        if (line[0] == '@')
-        {
-            if (_table->getAddress(trim(line, "@")) == -1)
-            {
-                _table->addEntry(trim(line, "@"), memoryNum);
-                memoryNum++;
-            }
-            a_instruction = '@' + std::to_string(_table->getAddress(trim(line, "@")));
-            std::cout << "A명령어 : " << a_instruction << std::endl;
-        }
-    }
-}
+//     std::string a_instruction;
+//     _infile.open(_firstPathFname);
+//     while (std::getline(_infile, line))
+//     {
+//         if (instructionType() == A_INSTRUCTION)
+//         {
+//             if (_table->getAddress(trim(line, "@")) == -1)
+//             {
+//                 _table->addEntry(trim(line, "@"), memoryNum);
+//                 memoryNum++;
+//             }
+//             a_instruction = '@' + std::to_string(_table->getAddress(trim(line, "@")));
+//             std::cout << "A명령어 : " << a_instruction << std::endl;
+//         }
+
+
+//     }
+// }
 

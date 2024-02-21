@@ -15,7 +15,7 @@ private:
     std::string     _commandLine;
     SymbolTable*    _table;
     std::ifstream   _infile;
-    std::string     firstPathFname;
+    std::string     _firstPathFname;
     std::ofstream   _firstPath;
     std::string     _secondPath;
 
@@ -29,7 +29,7 @@ public :
     std::string dest();
     std::string comp();
     std::string jump();
-    void        firstPath();
+    std::string firstPath();
     void        secondPath();
 };
 
